@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stock Tracker</title>
+    <link rel="stylesheet" type="text/css" href="site.css">
+    <script src="stock-tracker.js"></script>
+</head>
+
+<body style="font-family: Lucida Console, Monaco, monospace;">
+
+    <h1>Stock tracker</h1>
+
+    <canvas id="graphLine">
+    </canvas>
+
+    <div id="graphLabels"></div>
+
+    <script>
+        var graph = createGraph("graphLine", ["Open Price ", "Close Price"],
+            "Rupees", "graphLabels", 50, 10, 0, true, true);
+
+        /* Update values every second */
+        setInterval(updateEverySecond, 1000);
+
+        function updateEverySecond() {
+            /* Get new values */
+            yrand0 = Math.random() * 10;
+            yrand1 = Math.random() * 10;
+
+            /* Update graph */
+            graph.update([yrand0, yrand1])
+        }
+    </script>
+</body>
+
+</html>
