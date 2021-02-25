@@ -1,14 +1,5 @@
 const colors = [
-    "#e52b50", "#008000", "#0000ff", "#ff00ff",
-    "#a52a2a", "#00008b", "#008b8b", "#a9a9a9",
-    "#006400", "#bdb76b", "#8b008b", "#556b2f",
-    "#ff8c00", "#9932cc", "#8b0000", "#e9967a",
-    "#9400d3", "#ff00ff", "#ffd700", "#008000",
-    "#4b0082", "#f0e68c", "#add8e6", "#e0ffff",
-    "#90ee90", "#d3d3d3", "#ffb6c1", "#ffffe0",
-    "#800000", "#000080", "#808000", "#ffa500",
-    "#ffc0cb", "#800080", "#800080", "#ff0000",
-    "#c0c0c0", "#ffffff", "#ffff00"
+    "#e52b50", "#008000", "#0000ff", "#ff00ff"
 ]
 
 const byID = function(id) { return document.getElementById(id); };
@@ -89,7 +80,6 @@ class Graph {
             }
 
             this.points = shiftArrayRowLeft(this.points, i, this.nValues, values[i]);
-
             byID(this.valueIDs[i]).innerHTML = values[i].toFixed(2) + ' ' + this.unit;
         }
 

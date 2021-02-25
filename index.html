@@ -10,27 +10,21 @@
 <body style="font-family: Lucida Console, Monaco, monospace;">
 
     <h1>Stock tracker</h1>
-
-    <canvas id="graphLine">
-    </canvas>
-
-    <div id="graphLabels"></div>
-
+    <div id="wrapper">
+        <canvas id="graphLine"></canvas>
+        <div id="graphLabels"></div>
+    </div>
     <script>
-        var graph = createGraph("graphLine", ["Open Price ", "Close Price"],
-            "Rupees", "graphLabels", 50, 10, 0, true, true);
-
-        /* Update values every second */
-        setInterval(updateEverySecond, 1000);
-
-        function updateEverySecond() {
-            /* Get new values */
-            yrand0 = Math.random() * 10;
-            yrand1 = Math.random() * 10;
-
-            /* Update graph */
-            graph.update([yrand0, yrand1])
-        }
+        var  graph  =  createGraph("graphLine",   ["close",  "open",  "high",  "low"],  "Rupees",  "graphLabels",  100,  10,  0,  true,  true);        
+        const  url  =  'http://api.marketstack.com/v1/eod?access_key=6b7bd30828036d3abf7c78e0668909b7&symbols=AAPL';        
+        fetch(url).then((resp)  =>  resp.json()).then(function (data)  {                
+            let  dataPoint  =  data.data;                
+            return  dataPoint.map(function (dataPoint)  {                    
+                graph.update([dataPoint.close, dataPoint.open, dataPoint.high, dataPoint.low]);                
+            })            
+        }).catch(function (error)  {                
+            console.log(error);            
+        });
     </script>
 </body>
 
